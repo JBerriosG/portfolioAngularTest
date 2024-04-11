@@ -1,0 +1,25 @@
+<div class="flex w-full justify-center">
+    <img [src]="owner?.avatar_url" [alt]="'Foto de '+owner?.login" class="w-32 rounded-full border-2">
+</div>
+<section class="w-full grid grid-cols-12 gap-4 py-4 ">
+    @for (repo of repos; track $index) {
+    <div
+        class="w-full flex flex-col col-span-12 md:col-span-6 overflow-hidden bg-slate-900 rounded-xl py-4 px-4 text-pretty font-bold border-slate-300 border-4 text-white text-justify hover:translate-y-3 transition-all">
+        <h1 class="text-4xl">{{repo.name}}</h1>
+        <h2 class="text-xl text-gray-400">{{repo.full_name}}</h2>
+        @if (repo.description) {
+        <p class="text-lg text-yellow-500 py-4">{{repo.description}}</p>
+        }@else {
+        <p class="text-lg text-red-500 py-4">{{"Descripción no disponible por el momento..."}}</p>
+        }
+        <div class="flex flex-row gap-4 flex-wrap text-wrap">
+            @if ($index <= languages.length) {
+                @for (item of languages[$index]; track $index) {
+                   <p class="py-2 px-2 bg-slate-500 rounded-md">{{item.name}}</p>
+                }
+            }
+        </div>
+    </div>
+    }
+    
+</section>
