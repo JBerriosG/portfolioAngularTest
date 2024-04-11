@@ -12,7 +12,7 @@ export class ProjectsService {
 
   async getAllRepos(): Promise<Repos[]> {
     const octokit = new Octokit({
-      auth: environment.GITHUB_TOKEN
+      auth: environment.TOKEN_API
     });
 
     const dataOctokit = await octokit.request("GET /users/{owner}/repos", {
@@ -24,7 +24,7 @@ export class ProjectsService {
 
   async getAllLanguages(repo: string): Promise<{ name: string, value: number }[]> {
     const octokit = new Octokit({
-      auth: environment.GITHUB_TOKEN
+      auth: environment.TOKEN_API
     });
 
     const dataOctokit = await octokit.request("GET /repos/{owner}/{repo}/languages", {
